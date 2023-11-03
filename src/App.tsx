@@ -1,6 +1,6 @@
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, TextField, ToggleButtonGroup } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { prefixer } from "stylis";
@@ -10,6 +10,7 @@ import { Background, Panel, SearchBar, RerunMiniTable } from "./components";
 import { BucketIcon, RerunIcon } from "./icons";
 import GrafanaLogo from "./icons/grafana.png";
 import { ReactComponent as ImageOpsLogo } from "./icons/ImageOpsLogo3.svg";
+import { SimpleStringToggle } from "./components/dashboard/SimpleStringToggle";
 
 // Create rtl cache
 const cacheRtl = createCache({
@@ -101,7 +102,7 @@ function App() {
               columnSpacing={5}
               rowSpacing={3}
             >
-              <Grid item className="h-[200px]" lg={4} md={6}>
+              <Grid item className="h-[250px]" lg={4} md={6}>
                 <Panel
                   badgeColor="#FFC542"
                   label="הרצות אוחרות"
@@ -109,20 +110,34 @@ function App() {
                     <RerunIcon arrowWidth={3} arrowSize={75} brainSize={65} />
                   }
                 >
-                  {/* <RerunMiniTable /> */}
+                  <RerunMiniTable />
                 </Panel>
               </Grid>
-              <Grid item className="h-[200px]" lg={4} md={6}>
+              <Grid item className="h-[250px]" lg={4} md={6}>
                 <Panel
                   badgeColor="#FC5A5A"
                   label="חישוב Bucket"
                   badgeContent={<BucketIcon size={75} />}
-                />
+                  subtitle={
+                    <SimpleStringToggle values={["PROD", "INT", "DEV"]} />
+                  }
+                >
+                  <TextField
+                    fullWidth
+                    label={
+                      <span className="w-full text-center">Entity ID</span>
+                    }
+                    margin="dense"
+                  ></TextField>
+                  <div className="text-bold text-lg text-center mt-2">
+                    vp-env-1234
+                  </div>
+                </Panel>
               </Grid>
-              <Grid item className="h-[200px]" lg={4} md={6}>
+              <Grid item className="h-[250px]" lg={4} md={6}>
                 <Panel badgeColor="#50B5FF" label="סיכום יומי" />
               </Grid>
-              <Grid item className="h-[47vh]" sm={12}>
+              <Grid item className="h-[44vh]" sm={12}>
                 <div className="h-full mt-7 flex items-end justify-center">
                   <div className="h-full grid justify-items-stretch bg-neutral-800/90 w-full rounded-xl backdrop-blur-lg p-3"></div>
                 </div>

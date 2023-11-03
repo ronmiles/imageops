@@ -14,7 +14,7 @@ export const Background = (): JSX.Element => {
           opacity={0.9}
           id={`${i}`}
           speed={2}
-          width={random(300, 900)}
+          width={random(300, 700)}
         />
       ))}
     </div>
